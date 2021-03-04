@@ -6,6 +6,10 @@ type RequestItemType = {
     time: string,
     icon: string,
     id: string,
+    userId: string,
+    countryId: string,
+    stars: string,
+    text: string
 }
 
 type RequestType = {

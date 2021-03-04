@@ -1,11 +1,8 @@
 import express from 'express'
 import mongoose from 'mongoose'
 const cors = require('cors')
-const cloudinary = require('cloudinary').v2
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs/promises');
 const countriesRouter = require('./routes/countries')
+const feedbackRouter = require('./routes/feedback')
 const userRouter = require('./routes/user')
 const loginRouter = require('./routes/login')
 const logAuth = require('./middleware/logAuth')
@@ -28,6 +25,7 @@ connection.once('open', () => {
 app.use('/login', loginRouter)
 app.use('/user', userRouter)
 app.use('/countries', logAuth, countriesRouter)
+app.use('/feedback', logAuth, feedbackRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`)
