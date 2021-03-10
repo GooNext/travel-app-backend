@@ -31,8 +31,7 @@ loginRouter.route('/').post(async (req:any, res:any, next:any) => {
         }
       });
     } else {
-      const errors = new Error('User not found');
-      return next(errors);
+      res.status(400).send({error: 'Invalid user or password'});
     }
   } catch (err) {
     return next(err);
