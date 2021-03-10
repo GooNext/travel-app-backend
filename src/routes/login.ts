@@ -13,9 +13,6 @@ loginRouter.route('/').post(async (req:any, res:any, next:any) => {
     const user = await getLoginPasswordUser(req.body.login);
     if (user && req.body.login && req.body.password) {
         bcryptLogin.compare(req.body.password, user.password, (err:any, result:any) => {
-        if (err) {
-          return next(err);
-        }
         if (result) {
           const token = jwtLogin.sign(
             {
@@ -29,6 +26,8 @@ loginRouter.route('/').post(async (req:any, res:any, next:any) => {
             }
           );
           return res.status(200).send({ token });
+        } else {
+          return res.status(400).send({error: 'Invalid user or password'});
         }
       });
     } else {
