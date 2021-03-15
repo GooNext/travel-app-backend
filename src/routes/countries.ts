@@ -51,7 +51,17 @@ router.route("/:locale").get((req: RequestType, res: ResponceType) => {
 
 router.route("/:id/:locale").get((req: RequestType, res: ResponceType) => {
   Country.findById(req.params.id)
-    .then((list: Object) => res.json(list))
+    .then((list: any) => {
+        countriesLocale
+            .find({ language: req.params.locale, increment: list._doc.increment })
+                .then((locale: any) => {
+                    res.json({
+                        ...list._doc,             
+                        description: locale[0]._doc.description,
+                        name: locale[0]._doc.name,
+                        capital: locale[0]._doc.capital,})
+                })
+    })
     .catch((err: String) => res.status(400).json(err));
 });
 
