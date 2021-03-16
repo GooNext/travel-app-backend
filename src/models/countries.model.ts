@@ -12,6 +12,7 @@ const contrySchema = new Schema(
       {
         text: { type: String, required: false, default: "" },
         stars: { type: Number },
+        userName: { type: String, required: false, default: "" }
       },
     ],
   },
