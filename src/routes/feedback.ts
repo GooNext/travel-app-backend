@@ -16,9 +16,11 @@ feedbackRouter.route('/').post((req: RequestType, res: ResponceType) => {
     });
 
     newFeedback.save((err: string) => {
-        if (err) throw err;
         CountryModel.findByIdAndUpdate(countryId, {$push: {feedback: newFeedback}})
             .then(res.json('Feedback added'))
+            .catch((err: string) => {
+                return res.status(400).json("Error: " + err);
+              });
     })
 });
 
