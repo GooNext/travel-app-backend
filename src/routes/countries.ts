@@ -12,6 +12,7 @@ type RequestItemType = {
   stars: string;
   text: string;
   locale: string;
+  userName: string;
 };
 
 type RequestType = {
