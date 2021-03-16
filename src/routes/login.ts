@@ -17,7 +17,8 @@ loginRouter.route('/').post(async (req:any, res:any, next:any) => {
           const token = jwtLogin.sign(
             {
               userId: user.id,
-              login: user.login
+              login: user.login,
+              name: user.name
             },
             process.env.JWT_SECRET_KEY,
             { algorithm: 'HS256' },

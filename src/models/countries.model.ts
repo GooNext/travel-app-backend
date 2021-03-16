@@ -7,6 +7,7 @@ const contrySchema = new Schema(
     image: { type: String, required: true },
     capitalLat: { type: String, required: true },
     capitalLon: { type: String, required: true },
+    timeZone: { type: Object, required: true },
     feedback: [
       {
         text: { type: String, required: false, default: "" },
@@ -17,6 +18,6 @@ const contrySchema = new Schema(
   { timestamps: true }
 );
 
-const Country = mongoose.model("Country", contrySchema);
+const Country = mongoose.model("Country", contrySchema, 'countries');
 
 module.exports = Country;
